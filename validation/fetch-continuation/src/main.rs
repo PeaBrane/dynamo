@@ -52,19 +52,13 @@ async fn select(
 async fn main() -> anyhow::Result<()> {
     let args: Vec<_> = std::env::args().collect();
     anyhow::ensure!(
-        args.len() == 4,
-        "usage: probe <off|on> <source-B-endpoint> <source-C-endpoint>"
+        args.len() == 3,
+        "usage: probe <source-B-endpoint> <source-C-endpoint>"
     );
-    let enabled = match args[1].as_str() {
-        "on" => true,
-        "off" => false,
-        _ => anyhow::bail!("mode must be off or on"),
-    };
     let registry = WorkerRegistry::new(2);
     let indexer = registry.get_or_create_indexer(RoutingPartitionId::new("fixture", "default"), 4);
     let service = SelectionServiceBuilder::new(
         KvRouterConfig {
-            router_fetch_continuation: enabled,
             router_queue_threshold: None,
             ..Default::default()
         },
@@ -118,7 +112,7 @@ async fn main() -> anyhow::Result<()> {
             .await?;
     }
     let mut sources = Vec::new();
-    for (id, start, end, endpoint) in [(11, 10, 15, &args[2]), (12, 15, 20, &args[3])] {
+    for (id, start, end, endpoint) in [(11, 10, 15, &args[1]), (12, 15, 20, &args[2])] {
         let owner = CacheOwnerId::new(
             PoolId::new(
                 IndexerDomainId::new(
@@ -161,7 +155,7 @@ async fn main() -> anyhow::Result<()> {
     let mut shutdown = tokio::signal::unix::signal(tokio::signal::unix::SignalKind::interrupt())?;
     println!(
         "{}",
-        json!({"url": format!("http://{}", listener.local_addr()?), "hashes": hashes, "tokens": tokens, "enabled": enabled})
+        json!({"url": format!("http://{}", listener.local_addr()?), "hashes": hashes, "tokens": tokens})
     );
     let service = Arc::new(service);
     let app = Router::new()

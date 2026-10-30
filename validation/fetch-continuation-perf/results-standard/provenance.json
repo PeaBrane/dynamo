@@ -1,0 +1,40 @@
+{
+  "rustc": "rustc 1.96.1 (31fca3adb 2026-06-26)",
+  "build": "cargo build --release --locked; repository .cargo/config.toml; system allocator",
+  "cpu_model": "Intel Xeon 6975P-C",
+  "logical_cpus": 32,
+  "physical_cores": 16,
+  "numa_nodes": 1,
+  "bench_cpu": 2,
+  "bench_smt_sibling": 18,
+  "kernel": "Linux 5.4.0",
+  "process_glibc": "2.39",
+  "notes": "Same fixed inventories and CPU placement as the historical comparison. Old enabled feature versus standard mode. No serving throughput claim.",
+  "source_sha256": {
+    "Cargo.toml": "28dd0ada0de78d2fcdb128ec2fc88a6c659ae5f322f66a577a0463ee0c78592d",
+    "Cargo.lock": "2a3b53ea877e657a24e72563c01939e5d20ea1f54388e0a55f7805cd20002247",
+    "src/main.rs": "e5520e79ad0cb40306ef787cb73bb9495f973f6bba04522db294aeff242e2195",
+    "run.py": "53484b3a63d0703d94ad619e29879e3c403d0f696f509999dbecb371b76df187",
+    "run-one.sh": "d2d1afba84955b88af1178f15bb8ad2679e14b65d272e1c7e5eb596454994ea2",
+    "analyze-followup.py": "bde05f4b9da4013f2b8bc399804532b3d868100539cfccb9c7b8b5544a32062b"
+  },
+  "binary_sha256": {
+    "alloc": "666c89cf54e32800eb7d62a716cf20ffe97a4ba066c144a1df55facfa78df3e2",
+    "feature": "6c77772b9ee2120182855cdaef40cabd002f9f6104729976fe74a9395855aa1a",
+    "standard": "68107515630b49ab109e2dcd545ce84301d7754292e71e152dbd56741fe458de",
+    "standard-alloc": "5afadae2d6bb5814ba272aff744fd4046d6981cbc29562dc2720eb1ac102f4ba"
+  },
+  "old_feature": "6e43c00daff9fd4ddc420b4808c3a7d3f48c4282",
+  "standard_feature": "e58769846168585de889b29bd9c31dcf59666014",
+  "production_sha256": {
+    "lib/kv-router/src/indexer/lower_tier.rs": "c967b7115f5a1bcc15207e86f7d74474c099c17051a9b2e1997d92a18d16a056",
+    "lib/kv-router/src/indexer/lower_tier_indexers.rs": "e66962a21fa48ae95288a9f7f03031ea909bf6077e0ecc56f9c196b51c5f352b",
+    "lib/kv-router/src/kv_hints/sources.rs": "b25c2f02d33c2275add7d9f50ce55eef09872d8e644d3ab330d5ef5bb9142ff2",
+    "lib/kv-router/src/kv_hints.rs": "2c3f4cb1a31b6415e6704e9568c4c7925ab89722f8b15deca6ba983bb21c54ae",
+    "lib/kv-router/src/services/selection/core/run.rs": "83be0b8e4b745b623bff481cb701369818501d681c60b429f985872c4e0d2e9d",
+    "lib/kv-router/src/scheduling/overlap_refresh.rs": "1b6df68e752b4075f490898e22139e4ce28dc2a7839bda60ca21d89568b76ece",
+    "validation/fetch-continuation-perf/src/main.rs": "e5520e79ad0cb40306ef787cb73bb9495f973f6bba04522db294aeff242e2195",
+    "validation/fetch-continuation-perf/Cargo.toml": "28dd0ada0de78d2fcdb128ec2fc88a6c659ae5f322f66a577a0463ee0c78592d",
+    "validation/fetch-continuation-perf/Cargo.lock": "2a3b53ea877e657a24e72563c01939e5d20ea1f54388e0a55f7805cd20002247"
+  }
+}

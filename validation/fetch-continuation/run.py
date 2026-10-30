@@ -168,9 +168,9 @@ class Peer:
 
 
 @contextmanager
-def router(binary, enabled, sources):
+def router(binary, sources):
     process = subprocess.Popen(
-        [str(binary), "on" if enabled else "off", *sources],
+        [str(binary), *sources],
         stdout=subprocess.PIPE,
         text=True,
     )
@@ -249,12 +249,11 @@ def main():
         if name == "kvcr" or name.startswith("kvcr.")
     ), "KVCR modules were loaded from mixed package locations"
     # Ask the router for its real hash chain before allocating peer inventories.
-    with router(args.probe, False, ["tcp://unused:1", "tcp://unused:2"]) as fixture:
+    with router(args.probe, ["tcp://unused:1", "tcp://unused:2"]) as fixture:
         hashes = fixture["hashes"]
     agents = {}
     report = {
         "kvcr_revision": revision,
-        "off_requests": 0,
         "successful_fetches": 0,
         "rejected_wrong_sources": 0,
     }
@@ -264,58 +263,51 @@ def main():
         source_c = Peer("source-c", agents, hashes, range(15, 20))
         stack.callback(source_c.close)
         endpoints = [source_b.endpoint, source_c.endpoint]
-        for enabled in (False, True):
-            with router(args.probe, enabled, endpoints) as metadata:
-                assert metadata["hashes"] == hashes
-                for i in range(args.requests):
-                    target, local, end, endpoint = (
-                        (1, 10, 15, endpoints[0])
-                        if i % 2 == 0
-                        else (2, 15, 20, endpoints[1])
-                    )
-                    request_id = f"{enabled}-{i}"
-                    hint = book(metadata, target, request_id)
-                    if not enabled:
-                        assert hint is None, hint
-                        report["off_requests"] += 1
-                        continue
-                    assert len(hint["actions"]) == 1
-                    action = hint["actions"][0]
-                    assert action["action_type"] == "kv.fetch"
-                    assert action["payload"] == {
-                        "source_control_endpoint": endpoint,
-                        "block_hashes": hashes[:end],
-                    }
-                    peer = Peer(
-                        f"target-{i}",
-                        agents,
-                        hashes,
-                        range(local),
-                        sources=(source_b, source_c),
-                    )
-                    try:
-                        peer.verify_fetch(hint, local, end, request_id)
-                    finally:
-                        peer.close()
-                    report["successful_fetches"] += 1
-                if not enabled:
-                    continue
-                # A deliberate wrong-source hint must fail: this guards against a
-                # mock that claims every hash exists or never checks transfer bytes.
-                hint = book(metadata, 1, "wrong-source")
-                hint["actions"][0]["payload"]["source_control_endpoint"] = endpoints[1]
+        with router(args.probe, endpoints) as metadata:
+            assert metadata["hashes"] == hashes
+            for i in range(args.requests):
+                target, local, end, endpoint = (
+                    (1, 10, 15, endpoints[0])
+                    if i % 2 == 0
+                    else (2, 15, 20, endpoints[1])
+                )
+                request_id = f"fetch-{i}"
+                hint = book(metadata, target, request_id)
+                assert len(hint["actions"]) == 1
+                action = hint["actions"][0]
+                assert action["action_type"] == "kv.fetch"
+                assert action["payload"] == {
+                    "source_control_endpoint": endpoint,
+                    "block_hashes": hashes[:end],
+                }
                 peer = Peer(
-                    "negative-target",
+                    f"target-{i}",
                     agents,
                     hashes,
-                    range(10),
+                    range(local),
                     sources=(source_b, source_c),
                 )
                 try:
-                    peer.verify_fetch(hint, 10, 15, "wrong-source", success=False)
+                    peer.verify_fetch(hint, local, end, request_id)
                 finally:
                     peer.close()
-                report["rejected_wrong_sources"] += 1
+                report["successful_fetches"] += 1
+            # A deliberate wrong-source hint must fail: this guards against a
+            # mock that claims every hash exists or never checks transfer bytes.
+            hint = book(metadata, 1, "wrong-source")
+            hint["actions"][0]["payload"]["source_control_endpoint"] = endpoints[1]
+            peer = Peer(
+                "negative-target",
+                agents,
+                hashes,
+                range(10),
+                sources=(source_b, source_c),
+            )
+            try:
+                peer.verify_fetch(hint, 10, 15, "wrong-source", success=False)
+            finally:
+                peer.close()
+            report["rejected_wrong_sources"] += 1
     print(json.dumps(report, sort_keys=True))
 
 

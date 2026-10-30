@@ -22,7 +22,7 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--ssh", help="Verified measurement-host alias, if remote")
     parser.add_argument("--socket", help="Task-owned SSH control socket")
-    parser.add_argument("--phase", choices=["aa", "ab", "allocations"], required=True)
+    parser.add_argument("--phase", choices=["aa", "ab", "allocations", "follow-aa", "follow-ab", "follow-allocations"], required=True)
     parser.add_argument("--case", default="all")
     parser.add_argument("--ms", type=int, default=250)
     parser.add_argument("--cpu", type=int, default=2)
@@ -40,20 +40,25 @@ def main():
                               capture_output=True, text=True, check=True)
 
     orders = {
+        "follow-aa": ["new-a", "new-b", "new-b", "new-a"] * 3,
+        "follow-ab": ["old", "new", "new", "old"] * 3,
+        "follow-allocations": ["old-alloc", "new-alloc", "new-alloc", "old-alloc"],
         "aa": ["a", "b", "b", "a"] * 3,
         "ab": ["base", "off", "on", "on", "off", "base",
                "off", "on", "base", "base", "on", "off",
                "on", "base", "off", "off", "base", "on"],
         "allocations": ["alloc-off", "alloc-on", "alloc-off", "alloc-on"],
     }
-    arms = {"a": ("feature", "off"), "b": ("feature", "off"),
+    arms = {"new-a": ("standard", "on"), "new-b": ("standard", "on"),
+            "old": ("feature", "on"), "new": ("standard", "on"),
+            "old-alloc": ("alloc", "on"), "new-alloc": ("standard-alloc", "on"),"a": ("feature", "off"), "b": ("feature", "off"),
             "base": ("base", "off"), "off": ("feature", "off"), "on": ("feature", "on"),
             "alloc-off": ("alloc", "off"), "alloc-on": ("alloc", "on")}
     order = orders[args.phase]
     manifest = {"schema": 1, "phase": args.phase, "order": order, "case": args.case,
                 "milliseconds_per_metric": args.ms, "warmup_ms_per_metric": 30,
                 "minimum_samples": 256, "cpu": args.cpu, "capsule": args.capsule,
-                "instrumented": args.phase == "allocations", "binary_sha256": {}}
+                "instrumented": args.phase.endswith("allocations"), "binary_sha256": {}}
     for binary in sorted({arms[a][0] for a in order}):
         identity = execute("sha256sum " + shlex.quote(f"{args.root}/bins/{binary}"))
         manifest["binary_sha256"][binary] = identity.stdout.split()[0]

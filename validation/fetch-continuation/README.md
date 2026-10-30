@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # CPU fetch-continuation validation
 
-This harness checks Dynamo's opt-in fetch-continuation semantics against the public
+This harness checks Dynamo's standard fetch-continuation semantics against the public
 KVCR implementation. It needs no GPU, model weights, etcd, or NATS. It makes no
 latency, throughput, GPU, RDMA, or real-inference claim.
 
@@ -47,8 +47,7 @@ fills the fetch-consumer validation gap without claiming full serving coverage.
 
 ## Assertions
 
-- Default off: neither destination receives a suffix-only fetch hint.
-- Enabled: A gets one B hint through block 15; D gets one C hint through block 20.
+- A gets one B hint through block 15; D gets one C hint through block 20.
   A never gets an implicit B-then-C transfer plan.
 - Every payload contains the exact root-aligned request hashes. KVCR skips its
   locally resident prefix and fetches only the missing suffix.
@@ -89,9 +88,8 @@ All listeners bind loopback on kernel-assigned ports. The driver owns each route
 process and closes it by recorded process handle; KVCR peers are closed before
 buffer owners go away. No services are left running.
 
-Validated result: 32 default-off requests, 32 successful suffix byte fetches, and
+Validated result: 32 successful suffix byte fetches and
 one rejected wrong-source transfer. See `result.json`. Production correctness tests
 also cover gaps/eviction/dump replay, topology required/preferred modes, cache-owner
-attachment exclusion, and a seeded source-inventory oracle. Python binding runtime
-validation requires rebuilding the full Dynamo extension and is separate from this
-CPU harness.
+attachment exclusion, and a seeded source-inventory oracle. There is no continuation configuration switch. The older opt-in harness and its results
+remain available at validation-branch commit `1356e31ee4`.

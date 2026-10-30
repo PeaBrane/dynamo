@@ -322,11 +322,13 @@ impl Fixture {
     fn lookup(&self, enabled: bool) -> HashMap<StorageTier, LowerTierMatchDetails> {
         let options = LowerTierQueryOptions {
             retain_kv_transfer_chain: true,
-            #[cfg(feature = "continuation")]
+            #[cfg(all(feature = "continuation", not(feature = "standard")))]
             fetch_continuation: enabled,
         };
         #[cfg(not(feature = "continuation"))]
         assert!(!enabled);
+        #[cfg(feature = "standard")]
+        assert!(enabled);
         query_lower_tiers_with_options(&self.indexers, &self.sequence, &self.device, options)
     }
     fn summary(&self, candidates: &KvTransferCandidates) -> KvTransferSourceSummary {
@@ -356,13 +358,21 @@ impl Fixture {
         }
     }
     fn pipeline(&self, enabled: bool) {
-        let lookup = self.lookup(enabled);
-        // Match the current selection-service handoff: clone candidates, then drop matches.
-        let candidates = lookup[&StorageTier::HostPinned]
-            .kv_transfer_candidates
-            .as_ref()
-            .unwrap()
-            .clone();
+        let mut lookup = self.lookup(enabled);
+        let candidates = if cfg!(feature = "standard") {
+            lookup
+                .get_mut(&StorageTier::HostPinned)
+                .unwrap()
+                .kv_transfer_candidates
+                .take()
+                .unwrap()
+        } else {
+            lookup[&StorageTier::HostPinned]
+                .kv_transfer_candidates
+                .as_ref()
+                .unwrap()
+                .clone()
+        };
         drop(lookup);
         self.choose(&self.summary(&candidates));
         black_box(candidates);
@@ -428,7 +438,14 @@ impl Fixture {
                     .flat_map(|s| {
                         ranges(&s.present)
                             .into_iter()
-                            .filter(|&(start, _)| start > 0)
+                            .filter(|&(start, end)| {
+                                start > 0
+                                    && (!cfg!(feature = "standard")
+                                        || self
+                                            .targets
+                                            .iter()
+                                            .any(|&(_, depth)| start <= depth && depth < end))
+                            })
                             .map(|(start, end)| (s.source, start, end))
                             .collect::<Vec<_>>()
                     })
@@ -443,7 +460,17 @@ impl Fixture {
         };
         #[cfg(not(feature = "continuation"))]
         let interval_count = 0;
+        #[cfg(not(feature = "standard"))]
         let off = self.lookup(false);
+        #[cfg(feature = "standard")]
+        let off = query_lower_tiers_with_options(
+            &self.indexers,
+            &self.sequence,
+            &self.device,
+            LowerTierQueryOptions {
+                retain_kv_transfer_chain: false,
+            },
+        );
         let current = self.lookup(enabled);
         assert_eq!(
             off[&StorageTier::HostPinned].hits,
@@ -538,7 +565,7 @@ async fn main() {
     }
     assert!(!results.is_empty(), "unknown case");
     std::fs::write(&args[2], serde_json::to_vec_pretty(&serde_json::json!({
-        "schema": 1, "continuation_compiled": cfg!(feature = "continuation"), "enabled": enabled,
+        "schema": 1, "standard": cfg!(feature = "standard"), "continuation_compiled": cfg!(feature = "continuation"), "enabled": enabled,
         "counting_allocator": cfg!(feature = "allocations"), "block_size": 16, "results": results,
     })).unwrap()).unwrap();
 }

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "phase": "follow-aa",
+  "order": [
+    "new-a",
+    "new-b",
+    "new-b",
+    "new-a",
+    "new-a",
+    "new-b",
+    "new-b",
+    "new-a",
+    "new-a",
+    "new-b",
+    "new-b",
+    "new-a"
+  ],
+  "case": "all",
+  "milliseconds_per_metric": 150,
+  "warmup_ms_per_metric": 30,
+  "minimum_samples": 256,
+  "cpu": 2,
+  "capsule": true,
+  "instrumented": false,
+  "binary_sha256": {
+    "standard": "68107515630b49ab109e2dcd545ce84301d7754292e71e152dbd56741fe458de"
+  }
+}

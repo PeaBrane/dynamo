@@ -2,7 +2,8 @@
 
 This standalone harness measures the incremental router CPU cost in
 [ai-dynamo/dynamo#17657](https://github.com/ai-dynamo/dynamo/pull/17657).
-See [REPORT.md](REPORT.md) for the recorded comparison, [results/](results/) for every trial,
+See [FOLLOWUP.md](FOLLOWUP.md) for the standard-mode optimization comparison and
+[REPORT.md](REPORT.md) / [results/](results/) for the historical opt-in comparison,
 and [../fetch-continuation/](../fetch-continuation/) for the separate byte-verified CPU fetch harness.
 
 ## Scope
@@ -12,7 +13,7 @@ The device match is a valid, precomputed result. It then times three components 
 
 1. `query_lower_tiers_with_options`, including continuation discovery when enabled.
 2. `KvTransferSourceSummary::new` plus `source_for` for every eligible target, from a saved lookup.
-3. The combined lookup, candidate clone/drop handoff used by the selection service, summary,
+3. The combined lookup, candidate ownership handoff used by the selection service, summary,
    and per-target source choices, including destruction of temporary results.
 
 The third measurement is called `pipeline` in JSON. It excludes token hashing, the device index
@@ -58,7 +59,11 @@ The separate existing CPU fetch harness validates payload consumption and actual
 
 ## Build and reproduce
 
-Use two checkouts of the commits recorded in `results/provenance.json`. Place this identical
+For the historical opt-in comparison use the harness at commit `1356e31ee4` and
+the two checkouts recorded in `results/provenance.json`. For the follow-up use the
+source revisions in `results-standard/provenance.json`; the new arm defaults to the
+`standard` harness feature and moves candidates, while the frozen old arm retains
+the historical clone/drop path. Place this identical
 standalone crate at `validation/fetch-continuation-perf` in both. It owns its lockfile and does
 not require changing the repository workspace manifest. Preserve `.cargo/config.toml` and use
 the same compiler and target flags in both checkouts.
@@ -116,3 +121,18 @@ significance claim is made.
 Foreign CPU is their difference over the whole process, including fixture setup. Values near zero
 can be negative because Linux CPU counters and `/usr/bin/time` are tick/centisecond-granular.
 They do not establish exclusive access to the underlying physical machine.
+
+## Standard-mode follow-up
+
+The `follow-aa`, `follow-ab`, and `follow-allocations` phases reuse the same matrix
+and placement. Stage the historical `feature`/`alloc` binaries and the new
+`standard`/`standard-alloc` binaries under the measurement root's `bins/`. Build
+the new binaries with the default features, then with `--features allocations`.
+Run each phase using `run.py --phase PHASE --ms 150 --cpu 2`; use the other
+arguments documented above for the measurement root and output directory. Analyze
+with `analyze-followup.py results-standard`. The default-mode binary accepts only
+`on` as the legacy harness argument; no production configuration flag exists.
+
+The independent inventory oracle still checks exact source choices. The interval
+oracle additionally retains only intervals intersecting an original destination
+frontier; choices must agree with the old enabled arm across every recorded trial.
