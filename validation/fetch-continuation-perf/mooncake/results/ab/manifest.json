@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "phase": "ab",
+  "order": [
+    "main",
+    "candidate",
+    "candidate",
+    "main",
+    "main",
+    "candidate",
+    "candidate",
+    "main",
+    "main",
+    "candidate",
+    "candidate",
+    "main"
+  ],
+  "duration_ms": 120000,
+  "sha256": {
+    "bins/main": "277a44bb31c7b5d780bafa9e92ae55b78ec9ffbafddba99fcec8d5899eb49379",
+    "bins/candidate": "674e9d85e8296a5bf47dbaf6c8c8f5731c6fe7b992ec978dd463dfdca540877e",
+    "traces/agentx128.jsonl": "e7e25eeff6222d9e3af17ad3d2d8d9e84a789996b5df2cdba78a6eb00c3aecb0",
+    "run-one.sh": "908489d1a44f79194fbc4cc9516d4448a88cdfe577c04ea1c9d4d63ae3a3b174"
+  }
+}

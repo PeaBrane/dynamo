@@ -5,6 +5,9 @@ SPDX-License-Identifier: Apache-2.0
 
 # Frontier-seeded lookup replay
 
+See [RESULTS.md](RESULTS.md) for the completed six-runs-per-arm comparison,
+including A/A noise, queueing, final drain, and all trial outcomes.
+
 This compares main `670019d948` with the continuation feature applied to the same
 revision. It uses the existing `mooncake_bench` lower-tier mode with concurrent
 device and host events. It measures indexer lookup cost, including continuation

@@ -2,8 +2,9 @@
 
 This standalone harness measures the incremental router CPU cost in
 [ai-dynamo/dynamo#17657](https://github.com/ai-dynamo/dynamo/pull/17657).
-See [FOLLOWUP.md](FOLLOWUP.md) for the standard-mode optimization comparison and
-[REPORT.md](REPORT.md) / [results/](results/) for the historical opt-in comparison,
+See [mooncake/](mooncake/) for the current fused-walk replay and reproduction steps.
+[FOLLOWUP.md](FOLLOWUP.md) records the earlier standard-mode optimization comparison;
+[REPORT.md](REPORT.md) / [results/](results/) record the historical opt-in comparison,
 and [../fetch-continuation/](../fetch-continuation/) for the separate byte-verified CPU fetch harness.
 
 ## Scope
@@ -49,8 +50,9 @@ unattached; advertised topology still constrains source eligibility. Destination
 hints but do not publish source endpoints, keeping the independent owner and target axes explicit.
 
 Every process validates source choices against an independent boolean-membership oracle,
-including tie-breaking, attachment and topology restrictions. Enabled runs also compare the full
-set of emitted intervals against maximal contiguous bitmap ranges. Root-aligned hashes and
+including tie-breaking, attachment and topology restrictions. Current runs compare emitted
+intervals with contiguous bitmap coverage beginning at original destination frontiers.
+Historical opt-in runs compared all maximal contiguous ranges. Root-aligned hashes and
 unchanged local hits/continuations are checked. Analysis requires identical discrete outcomes
 across repeats, allocations builds, and base/default-off arms. Correctness failures stop the run.
 

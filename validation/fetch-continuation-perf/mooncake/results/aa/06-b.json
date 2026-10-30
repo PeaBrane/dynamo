@@ -1,0 +1,138 @@
+{
+  "schema_version": 4,
+  "backend": "concurrent-radix-tree-compressed",
+  "timer": "clock_nanosleep_monotonic_absolute",
+  "benchmark_duration_ms": 120000,
+  "block_size": 16,
+  "pre_run_quiescence_ms": 5000,
+  "query_lanes": 2,
+  "issuer_threads": 1,
+  "event_workers": 4,
+  "issuer_cpus": [
+    14
+  ],
+  "query_issuer_cpu": 15,
+  "backend_cpus": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "total_requests": 8160,
+  "total_events": 967270,
+  "total_stored_events": 577245,
+  "total_removed_events": 390025,
+  "total_cleared_events": 0,
+  "total_request_blocks": 63193344,
+  "total_stored_blocks": 4514541,
+  "total_removed_blocks": 2590660,
+  "total_logical_ops": 975430,
+  "total_block_ops": 70298545,
+  "offered_logical_ops_per_sec": 8128.583333333333,
+  "actual_issue_logical_ops_per_sec": 8128.580795590409,
+  "achieved_logical_ops_per_sec": 8125.873527592988,
+  "offered_block_ops_per_sec": 585821.2083333334,
+  "actual_issue_block_ops_per_sec": 585821.0254400092,
+  "achieved_block_ops_per_sec": 585625.914564658,
+  "read_issue_lag": {
+    "p50_ns": 192,
+    "p99_ns": 5290,
+    "p999_ns": 9304,
+    "max_ns": 8122723
+  },
+  "update_issue_lag": {
+    "p50_ns": 1990,
+    "p99_ns": 290505,
+    "p999_ns": 396567,
+    "max_ns": 1549119
+  },
+  "generator_gate": "issue_span_exact_completion",
+  "query_queue_wait": {
+    "p50_ns": 33821573,
+    "p99_ns": 377637719,
+    "p999_ns": 390157615,
+    "max_ns": 392454419
+  },
+  "query_service": {
+    "p50_ns": 1135786,
+    "p99_ns": 3630958,
+    "p999_ns": 4585788,
+    "max_ns": 13570373
+  },
+  "query_scheduled_to_finished": {
+    "p50_ns": 34968060,
+    "p99_ns": 378150817,
+    "p999_ns": 391117557,
+    "max_ns": 392771846
+  },
+  "update_accepted_to_finished": {
+    "p50_ns": 4999,
+    "p99_ns": 801356,
+    "p999_ns": 3817478,
+    "max_ns": 6532098
+  },
+  "update_scheduled_to_finished": {
+    "p50_ns": 6751,
+    "p99_ns": 810516,
+    "p999_ns": 3967936,
+    "max_ns": 6532581
+  },
+  "delayed_reads": 6,
+  "delayed_updates": 147662,
+  "queue_depth_at_stop": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "queued_queries_at_stop": 3,
+  "maximum_query_queue_depth": 1057,
+  "outstanding_updates_at_stop": 0,
+  "maximum_outstanding_updates": 1267,
+  "post_acceptance_completion_races": 16,
+  "issuer_cpu_ns": 3619263265,
+  "issue_span_ns": 120000037464,
+  "drain_ns": 31003230,
+  "generator_valid": true,
+  "kept_up": true,
+  "failure_reasons": [],
+  "lower_tier": {
+    "cpu_tier": {
+      "stored_events": 212234,
+      "removed_events": 7385,
+      "stored_blocks": 19309432,
+      "removed_blocks": 18785144,
+      "live_memberships": 524288
+    },
+    "kvcr": {
+      "stored_events": 7753,
+      "removed_events": 523,
+      "stored_blocks": 3469868,
+      "removed_blocks": 284404,
+      "live_memberships": 3185464
+    },
+    "cpu_tier_indexed_memberships": 524288,
+    "kvcr_indexed_memberships": 3185464,
+    "query_service": {
+      "p50_ns": 1117842,
+      "p99_ns": 3575001,
+      "p999_ns": 4536557,
+      "max_ns": 13547784
+    },
+    "hit_queries": 177,
+    "drain_ns": 31003230,
+    "allocator": "glibc",
+    "heap_bytes": 346149760,
+    "bytes_per_membership": 93.30805940666654
+  },
+  "binary_sha256": "277a44bb31c7b5d780bafa9e92ae55b78ec9ffbafddba99fcec8d5899eb49379",
+  "trace_sha256": "e7e25eeff6222d9e3af17ad3d2d8d9e84a789996b5df2cdba78a6eb00c3aecb0"
+}

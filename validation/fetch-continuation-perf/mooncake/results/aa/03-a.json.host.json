@@ -1,0 +1,7 @@
+{
+  "busy_seconds": 313.96,
+  "process_cpu_seconds": 299.81,
+  "foreign_cpu_seconds": 14.15,
+  "steal_seconds": 0.01,
+  "whole_process_wall_seconds": 194.183267
+}

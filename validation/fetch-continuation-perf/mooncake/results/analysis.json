@@ -1,0 +1,463 @@
+{
+  "gates": {
+    "scout": {
+      "main": {
+        "runs": 1,
+        "generator_valid": 1,
+        "kept_up": 1,
+        "failures": [
+          []
+        ]
+      },
+      "candidate": {
+        "runs": 1,
+        "generator_valid": 1,
+        "kept_up": 1,
+        "failures": [
+          []
+        ]
+      }
+    },
+    "aa": {
+      "a": {
+        "runs": 6,
+        "generator_valid": 6,
+        "kept_up": 6,
+        "failures": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "b": {
+        "runs": 6,
+        "generator_valid": 6,
+        "kept_up": 6,
+        "failures": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    "ab": {
+      "main": {
+        "runs": 6,
+        "generator_valid": 6,
+        "kept_up": 6,
+        "failures": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "candidate": {
+        "runs": 6,
+        "generator_valid": 6,
+        "kept_up": 6,
+        "failures": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    }
+  },
+  "metrics": {
+    "lower_tier.query_service.p50_ns": {
+      "medians": {
+        "main": 1162018.0,
+        "candidate": 1209204.5
+      },
+      "ranges": {
+        "main": [
+          1133209,
+          1228974
+        ],
+        "candidate": [
+          1199293,
+          1230631
+        ]
+      },
+      "aa": {
+        "ratio": 0.9970425858989459,
+        "ci95": [
+          0.8519677536668432,
+          1.1105289993516168
+        ],
+        "mann_whitney_exact_p": 0.3939393939393939,
+        "paired_increase": 0,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 1.0406073744124447,
+        "ci95": [
+          1.0034544921461106,
+          1.0622587584767045
+        ],
+        "mann_whitney_exact_p": 0.04112554112554113,
+        "paired_increase": 5,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "lower_tier.query_service.p99_ns": {
+      "medians": {
+        "main": 3835368.5,
+        "candidate": 3691730.0
+      },
+      "ranges": {
+        "main": [
+          3574940,
+          4401943
+        ],
+        "candidate": [
+          3505497,
+          3826510
+        ]
+      },
+      "aa": {
+        "ratio": 0.9405570548631419,
+        "ci95": [
+          0.7812029904610992,
+          1.264575330978211
+        ],
+        "mann_whitney_exact_p": 0.3939393939393939,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 0.962548970196736,
+        "ci95": [
+          0.8768712167620999,
+          1.0263044706601936
+        ],
+        "mann_whitney_exact_p": 0.48484848484848486,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "query_service.p50_ns": {
+      "medians": {
+        "main": 1181686.0,
+        "candidate": 1229695.0
+      },
+      "ranges": {
+        "main": [
+          1152396,
+          1249840
+        ],
+        "candidate": [
+          1219184,
+          1250719
+        ]
+      },
+      "aa": {
+        "ratio": 0.9967707792687682,
+        "ci95": [
+          0.8533271422326778,
+          1.1111486739650251
+        ],
+        "mann_whitney_exact_p": 0.3939393939393939,
+        "paired_increase": 0,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 1.0406275440345405,
+        "ci95": [
+          1.0027255621854239,
+          1.0624942627362945
+        ],
+        "mann_whitney_exact_p": 0.04112554112554113,
+        "paired_increase": 5,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "query_service.p99_ns": {
+      "medians": {
+        "main": 3892225.0,
+        "candidate": 3731629.5
+      },
+      "ranges": {
+        "main": [
+          3621360,
+          4454891
+        ],
+        "candidate": [
+          3553598,
+          3872114
+        ]
+      },
+      "aa": {
+        "ratio": 0.9407266314588507,
+        "ci95": [
+          0.7861775290808404,
+          1.2624733515476776
+        ],
+        "mann_whitney_exact_p": 0.3939393939393939,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 0.9587394099775836,
+        "ci95": [
+          0.8760921461333757,
+          1.0259352236607124
+        ],
+        "mann_whitney_exact_p": 0.48484848484848486,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "query_scheduled_to_finished.p99_ns": {
+      "medians": {
+        "main": 409756957.0,
+        "candidate": 442558818.0
+      },
+      "ranges": {
+        "main": [
+          367179879,
+          446054437
+        ],
+        "candidate": [
+          426421320,
+          467383852
+        ]
+      },
+      "aa": {
+        "ratio": 0.978300051882008,
+        "ci95": [
+          0.8247855025640305,
+          1.0983213283537558
+        ],
+        "mann_whitney_exact_p": 0.8181818181818182,
+        "paired_increase": 4,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 1.0800519928695196,
+        "ci95": [
+          1.0065892445929443,
+          1.201189825548801
+        ],
+        "mann_whitney_exact_p": 0.025974025974025976,
+        "paired_increase": 5,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "update_accepted_to_finished.p50_ns": {
+      "medians": {
+        "main": 4828.5,
+        "candidate": 4792.0
+      },
+      "ranges": {
+        "main": [
+          4580,
+          5052
+        ],
+        "candidate": [
+          4740,
+          4981
+        ]
+      },
+      "aa": {
+        "ratio": 1.0384083413129057,
+        "ci95": [
+          0.9853879399053304,
+          1.1142921806042774
+        ],
+        "mann_whitney_exact_p": 0.17965367965367965,
+        "paired_increase": 5,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 0.9924407165786476,
+        "ci95": [
+          0.9626355966251506,
+          1.044736280162289
+        ],
+        "mann_whitney_exact_p": 0.9372294372294372,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "update_accepted_to_finished.p99_ns": {
+      "medians": {
+        "main": 812375.5,
+        "candidate": 794418.0
+      },
+      "ranges": {
+        "main": [
+          785643,
+          865080
+        ],
+        "candidate": [
+          781321,
+          902498
+        ]
+      },
+      "aa": {
+        "ratio": 0.9911689243032666,
+        "ci95": [
+          0.9183406618970839,
+          1.1291478494740053
+        ],
+        "mann_whitney_exact_p": 1.0,
+        "paired_increase": 2,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 0.9778950743837056,
+        "ci95": [
+          0.9242359452230687,
+          1.0573203635081323
+        ],
+        "mann_whitney_exact_p": 0.48484848484848486,
+        "paired_increase": 1,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "achieved_block_ops_per_sec": {
+      "medians": {
+        "main": 585606.8656269899,
+        "candidate": 585493.7825457137
+      },
+      "ranges": {
+        "main": [
+          585602.5002589884,
+          585619.2641914961
+        ],
+        "candidate": [
+          585425.7407661205,
+          585519.5892223528
+        ]
+      },
+      "aa": {
+        "ratio": 0.99998206523284,
+        "ci95": [
+          0.999930335894859,
+          1.0000207954160514
+        ],
+        "mann_whitney_exact_p": 0.30952380952380953,
+        "paired_increase": 1,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 0.9998068959093315,
+        "ci95": [
+          0.9997377203690102,
+          0.9998361299237782
+        ],
+        "mann_whitney_exact_p": 0.0021645021645021645,
+        "paired_increase": 0,
+        "n": [
+          6,
+          6
+        ]
+      }
+    },
+    "drain_ns": {
+      "medians": {
+        "main": 34889385.5,
+        "candidate": 58135932.0
+      },
+      "ranges": {
+        "main": [
+          32499245,
+          35844309
+        ],
+        "candidate": [
+          52741256,
+          69305478
+        ]
+      },
+      "aa": {
+        "ratio": 1.065886922547551,
+        "ci95": [
+          0.9419413085842843,
+          1.246577798853636
+        ],
+        "mann_whitney_exact_p": 0.30952380952380953,
+        "paired_increase": 5,
+        "n": [
+          6,
+          6
+        ]
+      },
+      "candidate_vs_main": {
+        "ratio": 1.6662928041538594,
+        "ci95": [
+          1.561404222832929,
+          1.8697062293888131
+        ],
+        "mann_whitney_exact_p": 0.0021645021645021645,
+        "paired_increase": 6,
+        "n": [
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "host": {
+    "timed_trials": 24,
+    "max_foreign_core_fraction": 0.37053210947888426,
+    "steal_seconds": 0.58
+  }
+}
