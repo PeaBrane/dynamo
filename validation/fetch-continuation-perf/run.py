@@ -28,6 +28,8 @@ def main():
     parser.add_argument("--cpu", type=int, default=2)
     parser.add_argument("--capsule", action="store_true", help="Use runtime/ loader and libraries")
     args = parser.parse_args()
+    if bool(args.ssh) != bool(args.socket):
+        parser.error("--ssh and --socket must be supplied together")
     args.out.mkdir(parents=True, exist_ok=False)
     ssh = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=12"]
     if args.socket:
@@ -36,6 +38,9 @@ def main():
         ssh += [args.ssh]
 
     def execute(command):
+        if args.ssh:
+            subprocess.run(["ssh", "-S", args.socket, "-O", "check", args.ssh],
+                           capture_output=True, text=True, check=True)
         return subprocess.run(ssh + [command] if args.ssh else ["bash", "-c", command],
                               capture_output=True, text=True, check=True)
 

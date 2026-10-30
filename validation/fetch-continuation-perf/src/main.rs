@@ -446,7 +446,13 @@ impl Fixture {
                                             .iter()
                                             .any(|&(_, depth)| start <= depth && depth < end))
                             })
-                            .map(|(start, end)| (s.source, start, end))
+                            .filter_map(|(start, end)| {
+                                let start = if cfg!(feature = "standard") {
+                                    self.targets.iter().map(|&(_, depth)| depth)
+                                        .filter(|&depth| start <= depth && depth < end).min()?
+                                } else { start };
+                                Some((s.source, start, end))
+                            })
                             .collect::<Vec<_>>()
                     })
                     .collect()

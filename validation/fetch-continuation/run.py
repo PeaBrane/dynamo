@@ -163,6 +163,29 @@ class Peer:
         )
         self.kvcr.discard_hint(request_id)
 
+    def verify_stale_prefix(self, hint, request_id):
+        # The router credited ten local blocks, but only eight remain. The
+        # suffix source owns 11-15, so blocks 9-10 cannot be fetched from it.
+        self.kvcr.submit_hint(hint, request_id=request_id)
+        results = self.wait(self.kvcr.fetch(self.keys[:15], request_id=request_id))
+        assert set(results) == set(self.keys[:15])
+        for i, key in enumerate(self.keys[:15]):
+            assert results[key].success == (i not in (8, 9)), (i, results[key])
+        statuses = self.kvcr.query(self.keys[:15], request_id=request_id)
+        assert [status for status, _ in statuses] == [
+            QueryStatus.MISS if i in (8, 9) else QueryStatus.HIT for i in range(15)
+        ]
+        ctypes.memset(ctypes.addressof(self.framework), 0, len(self.framework))
+        available = [i for i in range(15) if i not in (8, 9)]
+        delivered = self.wait(self.kvcr.deliver({self.keys[i]: [self.ref(i)] for i in available}))
+        assert all(result.success for result in delivered.values())
+        assert self.framework.raw[:15 * BLOCK_BYTES] == b"".join(
+            bytes([0 if i in (8, 9) else i + 1]) * BLOCK_BYTES for i in range(15)
+        )
+        # This validates KVCR's per-block outcome, not an engine scheduler's
+        # recomputation. A real consumer must stop prefix credit at block eight.
+        self.kvcr.discard_hint(request_id)
+
     def close(self):
         self.kvcr.close()
 
@@ -256,6 +279,7 @@ def main():
         "kvcr_revision": revision,
         "successful_fetches": 0,
         "rejected_wrong_sources": 0,
+        "verified_stale_prefixes": 0,
     }
     with ExitStack() as stack:
         source_b = Peer("source-b", agents, hashes, range(10, 15))
@@ -308,6 +332,17 @@ def main():
             finally:
                 peer.close()
             report["rejected_wrong_sources"] += 1
+            hint = book(metadata, 1, "stale-prefix")
+            assert hint["actions"][0]["payload"] == {
+                "source_control_endpoint": endpoints[0],
+                "block_hashes": hashes[:15],
+            }
+            peer = Peer("stale-target", agents, hashes, range(8), sources=(source_b, source_c))
+            try:
+                peer.verify_stale_prefix(hint, "stale-prefix")
+            finally:
+                peer.close()
+            report["verified_stale_prefixes"] += 1
     print(json.dumps(report, sort_keys=True))
 
 

@@ -61,6 +61,18 @@ The driver is closed-loop with one outstanding request: it books, fetches, verif
 and closes that destination before issuing the next request. Its request count is
 coverage, not a performance measurement.
 
+A stale-prefix control books the same hint for A while the real destination retains
+only blocks 1–8. It asserts failures and subsequent `MISS` for blocks 9–10,
+successful fetches for 11–15, and exact delivered bytes on both sides of the gap.
+This tests KVCR's partial-success contract, not an engine's recomputation path.
+
+The public vLLM 0.32.0 consumer was also inspected at
+`5df63a7203cdb9328d824a27b682e77c7b9928be`: its KVCR tier reports successful keys
+individually, the tiering manager commits those promotions and removes failed
+ones, and the offloading scheduler stops prefix credit at the first `MISS`.
+The core scheduler then computes the remaining tokens. That is a source-code
+check of one pinned consumer, not an executed vLLM or SGLang integration test.
+
 ## Reproduce
 
 Use a Linux CPU host and a virtual environment belonging to this Dynamo checkout.
@@ -88,8 +100,9 @@ All listeners bind loopback on kernel-assigned ports. The driver owns each route
 process and closes it by recorded process handle; KVCR peers are closed before
 buffer owners go away. No services are left running.
 
-Validated result: 32 successful suffix byte fetches and
-one rejected wrong-source transfer. See `result.json`. Production correctness tests
+Validated result: 32 successful suffix byte fetches,
+one rejected wrong-source transfer, and one stale-prefix partial-success check.
+See `result.json`. Production correctness tests
 also cover gaps/eviction/dump replay, topology required/preferred modes, cache-owner
 attachment exclusion, and a seeded source-inventory oracle. There is no continuation configuration switch. The older opt-in harness and its results
 remain available at validation-branch commit `1356e31ee4`.

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "main_revision": "670019d94846c73826feb931d438f69d94b19733",
+  "candidate_base": "670019d94846c73826feb931d438f69d94b19733",
+  "production_patch_sha256": "7ab2cec7b8f0d6b52a34ea8f8004ec5afae3334a33f20d2c8fba4eeedfac4cd6",
+  "aisimulate_revision": "c2eb4f640bf87d85b77c559d88e22316268ce284",
+  "trace": {
+    "common_prefix_tokens": 16384,
+    "input_tokens": 1011093504,
+    "output_sha256": "e7e25eeff6222d9e3af17ad3d2d8d9e84a789996b5df2cdba78a6eb00c3aecb0",
+    "output_tokens": 9181344,
+    "rows": 8160,
+    "sessions": 128,
+    "source_sha256": "51fd311c4f00acd6d4d457fba29653af03613cd1ee2611833dc40dfbe988dd60",
+    "trace_block_size": 64
+  },
+  "binary_sha256": {
+    "main": "277a44bb31c7b5d780bafa9e92ae55b78ec9ffbafddba99fcec8d5899eb49379",
+    "candidate": "674e9d85e8296a5bf47dbaf6c8c8f5731c6fe7b992ec978dd463dfdca540877e"
+  },
+  "build_inputs_sha256": {
+    "Cargo.toml": "c6d320fa4844853a7d21df8d2a0714174f4f763ffa9a1303c67e446b13ba4810",
+    "Cargo.lock": "c8785186a0ef2b632722ed11bc32c34924481101dae3520d6026277f14628428",
+    ".cargo/config.toml": "ceb45c89b07fd631eccb8092bed8ffc66f09b5b8cf2b34256d899b03915ac7e2"
+  },
+  "compiler": "rustc 1.96.1 (31fca3adb 2026-06-26)\nbinary: rustc\ncommit-hash: 31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd\ncommit-date: 2026-06-26\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.1\nLLVM version: 22.1.2\n",
+  "build_command": "cargo bench --offline --locked -p dynamo-bench --no-default-features --features mooncake --bench mooncake_bench --no-run",
+  "host": {
+    "cpu": "Intel Xeon 6975P-C",
+    "physical_cores": 16,
+    "logical_cpus": 32,
+    "numa_nodes": 1,
+    "backend_cpus": "2-13",
+    "event_issuer_cpu": 14,
+    "query_issuer_cpu": 15
+  },
+  "limits": [
+    "Directional workload-shape comparison; not the reviewer exact trace or Grace reproduction",
+    "Lookup cost, not source-summary/selection or serving performance",
+    "Whole-process CPU time includes trace preparation",
+    "No peer-fetch simulation"
+  ],
+  "production_commit": "b33081734f7946a6cb6592757a4fa2f24f73d7c9"
+}
