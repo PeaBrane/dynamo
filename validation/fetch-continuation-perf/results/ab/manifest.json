@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "phase": "ab",
+  "order": [
+    "base",
+    "off",
+    "on",
+    "on",
+    "off",
+    "base",
+    "off",
+    "on",
+    "base",
+    "base",
+    "on",
+    "off",
+    "on",
+    "base",
+    "off",
+    "off",
+    "base",
+    "on"
+  ],
+  "case": "all",
+  "milliseconds_per_metric": 150,
+  "warmup_ms_per_metric": 30,
+  "minimum_samples": 256,
+  "cpu": 2,
+  "capsule": true,
+  "instrumented": false,
+  "binary_sha256": {
+    "base": "4795cbd86d22ac32370719bae61c50c398793a9a46504893a11b69e2443198e2",
+    "feature": "6c77772b9ee2120182855cdaef40cabd002f9f6104729976fe74a9395855aa1a"
+  }
+}

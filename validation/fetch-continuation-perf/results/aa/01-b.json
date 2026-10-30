@@ -1,0 +1,947 @@
+{
+  "block_size": 16,
+  "continuation_compiled": true,
+  "counting_allocator": false,
+  "enabled": false,
+  "results": [
+    {
+      "case": {
+        "blocks": 256,
+        "islands": 1,
+        "name": "4k_shared",
+        "owners": 8,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 1899.574573114344,
+          "p50_ns": 1870,
+          "p99_ns": 2191,
+          "samples": 76777
+        },
+        "pipeline": {
+          "mean_ns": 2352.2345942305533,
+          "p50_ns": 2319,
+          "p99_ns": 2652,
+          "samples": 62363
+        },
+        "ranking": {
+          "mean_ns": 308.2835361753631,
+          "p50_ns": 305,
+          "p99_ns": 331,
+          "samples": 416416
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 176,
+        "intervals": 0,
+        "memberships": 1024,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_no_sources",
+        "owners": 0,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 1970.305617371367,
+          "p50_ns": 1946,
+          "p99_ns": 2228,
+          "samples": 74145
+        },
+        "pipeline": {
+          "mean_ns": 2615.5201261559846,
+          "p50_ns": 2582,
+          "p99_ns": 2946,
+          "samples": 56121
+        },
+        "ranking": {
+          "mean_ns": 306.60336355012873,
+          "p50_ns": 304,
+          "p99_ns": 327,
+          "samples": 420627
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 0,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_single",
+        "owners": 1,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 1979.579035798488,
+          "p50_ns": 1953,
+          "p99_ns": 2237,
+          "samples": 73802
+        },
+        "pipeline": {
+          "mean_ns": 2611.777432031153,
+          "p50_ns": 2583,
+          "p99_ns": 2887,
+          "samples": 56239
+        },
+        "ranking": {
+          "mean_ns": 308.465478256297,
+          "p50_ns": 306,
+          "p99_ns": 329,
+          "samples": 418374
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 1024,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_pair",
+        "owners": 2,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 1998.7185578726842,
+          "p50_ns": 1970,
+          "p99_ns": 2273,
+          "samples": 73031
+        },
+        "pipeline": {
+          "mean_ns": 2671.0574482783695,
+          "p50_ns": 2644,
+          "p99_ns": 2950,
+          "samples": 55006
+        },
+        "ranking": {
+          "mean_ns": 307.1399558688061,
+          "p50_ns": 305,
+          "p99_ns": 328,
+          "samples": 420111
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 2048,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_shared",
+        "owners": 8,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 2041.9714565415006,
+          "p50_ns": 2009,
+          "p99_ns": 2332,
+          "samples": 71505
+        },
+        "pipeline": {
+          "mean_ns": 2673.7751533128308,
+          "p50_ns": 2645,
+          "p99_ns": 2967,
+          "samples": 54953
+        },
+        "ranking": {
+          "mean_ns": 307.77042859084634,
+          "p50_ns": 306,
+          "p99_ns": 329,
+          "samples": 419351
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 8192,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_64owners",
+        "owners": 64,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 2043.1053809463863,
+          "p50_ns": 2015,
+          "p99_ns": 2318,
+          "samples": 71493
+        },
+        "pipeline": {
+          "mean_ns": 2729.325595227032,
+          "p50_ns": 2701,
+          "p99_ns": 3017,
+          "samples": 53803
+        },
+        "ranking": {
+          "mean_ns": 308.07048680088633,
+          "p50_ns": 306,
+          "p99_ns": 329,
+          "samples": 418816
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 65536,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_256owners",
+        "owners": 256,
+        "shape": "suffix",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 2064.636914343811,
+          "p50_ns": 2031,
+          "p99_ns": 2385,
+          "samples": 70818
+        },
+        "pipeline": {
+          "mean_ns": 2740.9553541456867,
+          "p50_ns": 2708,
+          "p99_ns": 3048,
+          "samples": 53622
+        },
+        "ranking": {
+          "mean_ns": 308.14425632397086,
+          "p50_ns": 306,
+          "p99_ns": 329,
+          "samples": 418408
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 262144,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_64targets",
+        "owners": 64,
+        "shape": "suffix",
+        "targets": 64
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 11053.652715015927,
+          "p50_ns": 11001,
+          "p99_ns": 11845,
+          "samples": 13499
+        },
+        "pipeline": {
+          "mean_ns": 13473.646639603066,
+          "p50_ns": 13414,
+          "p99_ns": 14326,
+          "samples": 11085
+        },
+        "ranking": {
+          "mean_ns": 2157.150163316953,
+          "p50_ns": 2155,
+          "p99_ns": 2208,
+          "samples": 67966
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 65536,
+        "root_candidates": 64
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_root",
+        "owners": 64,
+        "shape": "root",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 60335.63566827697,
+          "p50_ns": 59401,
+          "p99_ns": 66933,
+          "samples": 2484
+        },
+        "pipeline": {
+          "mean_ns": 66461.2199556541,
+          "p50_ns": 65739,
+          "p99_ns": 72160,
+          "samples": 2255
+        },
+        "ranking": {
+          "mean_ns": 3599.0975206209396,
+          "p50_ns": 3577,
+          "p99_ns": 3687,
+          "samples": 41099
+        }
+      },
+      "validation": {
+        "choices": [
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ],
+          [
+            29,
+            2048
+          ]
+        ],
+        "hashes": 2048,
+        "intervals": 0,
+        "memberships": 131072,
+        "root_candidates": 72
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_staggered",
+        "owners": 64,
+        "shape": "staggered",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 2031.180351559786,
+          "p50_ns": 1998,
+          "p99_ns": 2334,
+          "samples": 71965
+        },
+        "pipeline": {
+          "mean_ns": 2731.8837607155474,
+          "p50_ns": 2698,
+          "p99_ns": 3047,
+          "samples": 53777
+        },
+        "ranking": {
+          "mean_ns": 308.03094674104074,
+          "p50_ns": 306,
+          "p99_ns": 328,
+          "samples": 418784
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 59904,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_fragmented",
+        "owners": 64,
+        "shape": "fragmented",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 2064.966472942208,
+          "p50_ns": 2033,
+          "p99_ns": 2361,
+          "samples": 70719
+        },
+        "pipeline": {
+          "mean_ns": 2755.250656906907,
+          "p50_ns": 2723,
+          "p99_ns": 3063,
+          "samples": 53280
+        },
+        "ranking": {
+          "mean_ns": 308.43136111363407,
+          "p50_ns": 306,
+          "p99_ns": 329,
+          "samples": 418378
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 49152,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 1,
+        "name": "32k_fully_local",
+        "owners": 64,
+        "shape": "local_fragmented",
+        "targets": 8
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 1936.8488932559653,
+          "p50_ns": 1916,
+          "p99_ns": 2187,
+          "samples": 75311
+        },
+        "pipeline": {
+          "mean_ns": 2694.4560224706725,
+          "p50_ns": 2664,
+          "p99_ns": 3012,
+          "samples": 54471
+        },
+        "ranking": {
+          "mean_ns": 247.7777164284636,
+          "p50_ns": 246,
+          "p99_ns": 259,
+          "samples": 503492
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 2048,
+        "intervals": 0,
+        "memberships": 49152,
+        "root_candidates": 8
+      }
+    },
+    {
+      "case": {
+        "blocks": 2048,
+        "islands": 8,
+        "name": "32k_islands",
+        "owners": 64,
+        "shape": "staggered",
+        "targets": 64
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 10329.688227146815,
+          "p50_ns": 10281,
+          "p99_ns": 11030,
+          "samples": 14440
+        },
+        "pipeline": {
+          "mean_ns": 13146.341903671744,
+          "p50_ns": 13089,
+          "p99_ns": 13904,
+          "samples": 11357
+        },
+        "ranking": {
+          "mean_ns": 2241.5553314693434,
+          "p50_ns": 2236,
+          "p99_ns": 2287,
+          "samples": 65451
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 1408,
+        "intervals": 0,
+        "memberships": 59904,
+        "root_candidates": 64
+      }
+    },
+    {
+      "case": {
+        "blocks": 8192,
+        "islands": 1,
+        "name": "128k_shared",
+        "owners": 256,
+        "shape": "suffix",
+        "targets": 64
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 11360.152101096224,
+          "p50_ns": 11308,
+          "p99_ns": 12191,
+          "samples": 13136
+        },
+        "pipeline": {
+          "mean_ns": 14447.339878131348,
+          "p50_ns": 14377,
+          "p99_ns": 15401,
+          "samples": 10339
+        },
+        "ranking": {
+          "mean_ns": 2164.7871781242616,
+          "p50_ns": 2162,
+          "p99_ns": 2204,
+          "samples": 67728
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 5632,
+        "intervals": 0,
+        "memberships": 1048576,
+        "root_candidates": 64
+      }
+    },
+    {
+      "case": {
+        "blocks": 8192,
+        "islands": 1,
+        "name": "128k_fragmented",
+        "owners": 64,
+        "shape": "fragmented",
+        "targets": 64
+      },
+      "metrics": {
+        "lookup": {
+          "mean_ns": 11145.760442352237,
+          "p50_ns": 11080,
+          "p99_ns": 11981,
+          "samples": 13383
+        },
+        "pipeline": {
+          "mean_ns": 14597.554056695992,
+          "p50_ns": 14528,
+          "p99_ns": 15501,
+          "samples": 10230
+        },
+        "ranking": {
+          "mean_ns": 2159.3792788546516,
+          "p50_ns": 2157,
+          "p99_ns": 2203,
+          "samples": 67892
+        }
+      },
+      "validation": {
+        "choices": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hashes": 5632,
+        "intervals": 0,
+        "memberships": 196608,
+        "root_candidates": 64
+      }
+    }
+  ],
+  "schema": 1
+}

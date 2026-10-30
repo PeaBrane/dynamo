@@ -1,0 +1,27 @@
+{
+  "base": "008d356966dc3cd77198d7f47b6f9d949ab44d6a",
+  "feature": "6e43c00daff9fd4ddc420b4808c3a7d3f48c4282",
+  "rustc": "rustc 1.96.1 (31fca3adb 2026-06-26)",
+  "build": "cargo build --release --locked; repository .cargo/config.toml; system allocator",
+  "cpu_model": "Intel Xeon 6975P-C",
+  "logical_cpus": 32,
+  "physical_cores": 16,
+  "numa_nodes": 1,
+  "bench_cpu": 2,
+  "bench_smt_sibling": 18,
+  "kernel": "Linux 5.4.0",
+  "process_glibc": "2.39",
+  "notes": "Fixed-inventory serial component service time; host not dedicated at hypervisor level.",
+  "source_sha256": {
+    "Cargo.toml": "6321c9e3f6a04ffb572d06c41cc575c52732f53e95026b59cd55bd09f7aea4a1",
+    "Cargo.lock": "2a3b53ea877e657a24e72563c01939e5d20ea1f54388e0a55f7805cd20002247",
+    "src/main.rs": "2f6543bbf5fb246c22d6db1ca84073ac260c6bdf927dc93818bb4eca487fd774",
+    "run.py": "da64834dab952c727e52782760fc16f17d97dbebbbaf619aeabbbef39b3f0ef3",
+    "run-one.sh": "d2d1afba84955b88af1178f15bb8ad2679e14b65d272e1c7e5eb596454994ea2"
+  },
+  "binary_sha256": {
+    "base": "4795cbd86d22ac32370719bae61c50c398793a9a46504893a11b69e2443198e2",
+    "alloc": "666c89cf54e32800eb7d62a716cf20ffe97a4ba066c144a1df55facfa78df3e2",
+    "feature": "6c77772b9ee2120182855cdaef40cabd002f9f6104729976fe74a9395855aa1a"
+  }
+}

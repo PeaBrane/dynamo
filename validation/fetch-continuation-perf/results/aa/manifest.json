@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "phase": "aa",
+  "order": [
+    "a",
+    "b",
+    "b",
+    "a",
+    "a",
+    "b",
+    "b",
+    "a",
+    "a",
+    "b",
+    "b",
+    "a"
+  ],
+  "case": "all",
+  "milliseconds_per_metric": 150,
+  "warmup_ms_per_metric": 30,
+  "minimum_samples": 256,
+  "cpu": 2,
+  "capsule": true,
+  "instrumented": false,
+  "binary_sha256": {
+    "feature": "6c77772b9ee2120182855cdaef40cabd002f9f6104729976fe74a9395855aa1a"
+  }
+}

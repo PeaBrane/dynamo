@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "phase": "allocations",
+  "order": [
+    "alloc-off",
+    "alloc-on",
+    "alloc-off",
+    "alloc-on"
+  ],
+  "case": "all",
+  "milliseconds_per_metric": 150,
+  "warmup_ms_per_metric": 30,
+  "minimum_samples": 256,
+  "cpu": 2,
+  "capsule": true,
+  "instrumented": true,
+  "binary_sha256": {
+    "alloc": "666c89cf54e32800eb7d62a716cf20ffe97a4ba066c144a1df55facfa78df3e2"
+  }
+}
