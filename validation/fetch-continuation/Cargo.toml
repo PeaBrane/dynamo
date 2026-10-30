@@ -1,0 +1,16 @@
+[package]
+name = "fetch-continuation-validation"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+anyhow = "1"
+async-trait = "0.1"
+axum = { version = "=0.8.4", default-features = false, features = ["http1", "json", "tokio"] }
+dynamo-kv-router = { path = "../../lib/kv-router", features = ["standalone-selection"] }
+dynamo-custom-policy-builtin = { path = "../../lib/router-plugins/builtin" }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "signal"] }
